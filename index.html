@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dark Gamer - Free Online Games</title>
+  <meta name="description" content="Dark Gamer - Play free online games. Discover arcade, racing, puzzle and sports games.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #080808;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(8, 8, 8, 0.95);
+      border-bottom: 1px solid #242424;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+
+    .logo span {
+      color: #8b5cf6;
+    }
+
+    nav {
+      display: flex;
+      gap: 22px;
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 14px;
+      transition: .2s;
+    }
+
+    nav a:hover {
+      color: #8b5cf6;
+    }
+
+    /* HERO */
+    .hero {
+      max-width: 1200px;
+      margin: auto;
+      padding: 80px 20px 60px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid #333;
+      border-radius: 30px;
+      color: #aaa;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 8vw, 80px);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: #8b5cf6;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+      color: #aaa;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    .hero-buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: .2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: #8b5cf6;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      opacity: .9;
+    }
+
+    .btn-secondary {
+      background: #171717;
+      color: #fff;
+      border: 1px solid #333;
+    }
+
+    .btn-secondary:hover {
+      border-color: #8b5cf6;
+    }
+
+    /* SEARCH */
+    .search-box {
+      max-width: 600px;
+      margin: 0 auto 40px;
+      padding: 0 20px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 16px 20px;
+      border-radius: 12px;
+      border: 1px solid #303030;
+      background: #121212;
+      color: #fff;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .search-box input:focus {
+      border-color: #8b5cf6;
+    }
+
+    /* MAIN */
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 35px 0 20px;
+    }
+
+    .section-title h2 {
+      font-size: 25px;
+    }
+
+    .section-title span {
+      color: #777;
+      font-size: 13px;
+    }
+
+    /* CATEGORIES */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .category {
+      background: #121212;
+      border: 1px solid #252525;
+      padding: 20px 10px;
+      border-radius: 12px;
+      text-align: center;
+      color: #ddd;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .category:hover {
+      border-color: #8b5cf6;
+      transform: translateY(-3px);
+    }
+
+    .category .icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .category p {
+      font-size: 13px;
+    }
+
+    /* GAMES */
+    .games {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .game {
+      background: #111;
+      border: 1px solid #252525;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: .25s;
+    }
+
+    .game:hover {
+      transform: translateY(-5px);
+      border-color: #8b5cf6;
+    }
+
+    .game-image {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 55px;
+      background:
+        radial-gradient(circle at center, #292929 0%, #101010 65%);
+    }
+
+    .game-content {
+      padding: 15px;
+    }
+
+    .game-content h3 {
+      font-size: 17px;
+      margin-bottom: 7px;
+    }
+
+    .game-content p {
+      color: #888;
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+
+    .play-btn {
+      display: block;
+      text-align: center;
+      background: #8b5cf6;
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    /* CTA */
+    .cta {
+      margin: 70px 0 40px;
+      padding: 45px 25px;
+      text-align: center;
+      border: 1px solid #292929;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #111, #18121f);
+    }
+
+    .cta h2 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      color: #999;
+      margin-bottom: 25px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid #222;
+      margin-top: 60px;
+      padding: 30px 20px;
+      text-align: center;
+      color: #777;
+      font-size: 13px;
+    }
+
+    footer .footer-logo {
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    footer span {
+      color: #8b5cf6;
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      .games {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .categories {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 55px;
+      }
+
+      .games {
+        grid-template-columns: 1fr;
+      }
+
+      .categories {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .game-image {
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav">
+
+      <div class="logo">
+        Dark<span>Gamer</span>
+      </div>
+
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#games">Games</a>
+        <a href="#categories">Categories</a>
+        <a href="#about">About</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+
+    <div class="hero-badge">
+      🎮 FREE ONLINE GAMES
+    </div>
+
+    <h1>
+      Welcome to <span>Dark Gamer</span>
+    </h1>
+
+    <p>
+      Discover free online games, explore different categories
+      and start playing instantly from your browser.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#games" class="btn btn-primary">
+        Play Games
+      </a>
+
+      <a href="#categories" class="btn btn-secondary">
+        Explore Categories
+      </a>
+    </div>
+
+  </section>
+
+
+  <!-- SEARCH -->
+  <div class="search-box">
+    <input
+      type="text"
+      id="search"
+      placeholder="🔎 Search for a game..."
+      onkeyup="searchGames()"
+    >
+  </div>
+
+
+  <main>
+
+    <!-- CATEGORIES -->
+    <section id="categories">
+
+      <div class="section-title">
+        <h2>Categories</h2>
+        <span>Explore games</span>
+      </div>
+
+      <div class="categories">
+
+        <div class="category" onclick="filterGames('Arcade')">
+          <div class="icon">🕹️</div>
+          <p>Arcade</p>
+        </div>
+
+        <div class="category" onclick="filterGames('Racing')">
+          <div class="icon">🏎‍🟀</div>
+          <p>Racing</p>
+        </div>
+
+        <div class="category" onclick="filterGames('Puzzle')">
+          <div class="icon">🧩</div>
+          <p>Puzzle</p>
+        </div>
+
+        <div class="category" onclick="filterGames('Sports')">
+          <div class="icon">⚽</div>
+          <p>Sports</p>
+        </div>
+
+        <div class="category" onclick="filterGames('Action')">
+          <div class="icon">🔥</div>
+          <p>Action</p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- GAMES -->
+    <section id="games">
+
+      <div class="section-title">
+        <h2>Popular Games</h2>
+        <span>Play now</span>
+      </div>
+
+      <div class="games" id="gamesGrid">
+
+
+        <!-- GAME 1 -->
+        <div class="game" data-category="Arcade" data-name="Space Adventure">
+
+          <div class="game-image">
+            🚀
+          </div>
+
+          <div class="game-content">
+
+            <h3>Space Adventure</h3>
+
+            <p>
+              Arcade • Free Game
+            </p>
+
+            <a
+              href="#"
+              class="play-btn"
+              onclick="openGame(event, 'Space Adventure')"
+            >
+              PLAY NOW
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- GAME 2 -->
+        <div class="game" data-category="Racing" data-name="Speed Racing">
+
+          <div class="game-image">
+            🏎‍🟀
+          </div>
+
+          <div class="game-content">
+
+            <h3>Speed Racing</h3>
+
+            <p>
+              Racing • Free Game
+            </p>
+
+            <a
+              href="#"
+              class="play-btn"
+              onclick="openGame(event, 'Speed Racing')"
+            >
+              PLAY NOW
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- GAME 3 -->
+        <div class="game" data-category="Puzzle" data-name="Brain Puzzle">
+
+          <div class="game-image">
+            🧩
+          </div>
+
+          <div class="game-content">
+
+            <h3>Brain Puzzle</h3>
+
+            <p>
+              Puzzle • Free Game
+            </p>
+
+            <a
+              href="#"
+              class="play-btn"
+              onclick="openGame(event, 'Brain Puzzle')"
+            >
+              PLAY NOW
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- GAME 4 -->
+        <div class="game" data-category="Sports" data-name="Football Challenge">
+
+          <div class="game-image">
+            ⚽
+          </div>
+
+          <div class="game-content">
+
+            <h3>Football Challenge</h3>
+
+            <p>
+              Sports • Free Game
+            </p>
+
+            <a
+              href="#"
+              class="play-btn"
+              onclick="openGame(event, 'Football Challenge')"
+            >
+              PLAY NOW
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- GAME 5 -->
+        <div class="game" data-category="Action" data-name="Dark Warrior">
+
+          <div class="game-image">
+            ⚔️
+          </div>
+
+          <div class="game-content">
+
+            <h3>Dark Warrior</h3>
+
+            <p>
+              Action • Free Game
+            </p>
+
+            <a
+              href="#"
+              class="play-btn"
+              onclick="openGame(event, 'Dark Warrior')"
+            >
+              PLAY NOW
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- GAME 6 -->
+        <div class="game" data-category="Arcade" data-name="Zombie Attack">
+
+          <div class="game-image">
+            🧟
+          </div>
+
+          <div class="game-content">
+
+            <h3>Zombie Attack</h3>
+
+            <p>
+              Arcade • Free Game
+            </p>
+
+            <a
+              href="#"
+              class="play-btn"
+              onclick="openGame(event, 'Zombie Attack')"
+            >
+              PLAY NOW
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- GAME 7 -->
+        <div class="game" data-category="Racing" data-name="Street Driver">
+
+          <div class="game-image">
+            🚘
+          </div>
+
+          <div class="game-content">
+
+            <h3>Street Driver</h3>
+
+            <p>
+              Racing • Free Game
+            </p>
+
+            <a
+              href="#"
+              class="play-btn"
+              onclick="openGame(event, 'Street Driver')"
+            >
+              PLAY NOW
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- GAME 8 -->
+        <div class="game" data-category="Puzzle" data-name="Color Match">
+
+          <div class="game-image">
+            🎨
+          </div>
+
+          <div class="game-content">
+
+            <h3>Color Match</h3>
+
+            <p>
+              Puzzle • Free Game
+            </p>
+
+            <a
+              href="#"
+              class="play-btn"
+              onclick="openGame(event, 'Color Match')"
+            >
+              PLAY NOW
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CPA SECTION -->
+    <section class="cta">
+
+      <h2>🎁 Special Offer</h2>
+
+      <p>
+        Discover our latest gaming offers and exclusive rewards.
+      </p>
+
+      <!--
+        IMPORTANT:
+        Replace the # below with your legitimate CPA tracking URL.
+      -->
+
+      <a
+        href="#"
+        class="btn btn-primary"
+        target="_blank"
+        rel="noopener noreferrer"
+        onclick="return cpaOffer()"
+      >
+        GET OFFER
+      </a>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+
+      <div class="section-title">
+        <h2>About Dark Gamer</h2>
+      </div>
+
+      <p style="
+        color:#888;
+        line-height:1.8;
+        max-width:800px;
+      ">
+        Dark Gamer is a gaming website designed to make it easy
+        to discover and play free online games directly from your
+        browser. More games and categories can be added over time.
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="footer-logo">
+      Dark<span>Gamer</span>
+    </div>
+
+    <p>
+      © 2026 Dark Gamer. All rights reserved.
+    </p>
+
+  </footer>
+
+
+  <script>
+
+    /* SEARCH */
+
+    function searchGames() {
+
+      const input =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+      const games =
+        document.querySelectorAll(".game");
+
+      games.forEach(function(game) {
+
+        const name =
+          game
+          .getAttribute("data-name")
+          .toLowerCase();
+
+        if (name.includes(input)) {
+          game.style.display = "block";
+        } else {
+          game.style.display = "none";
+        }
+
+      });
+
+    }
+
+
+    /* CATEGORY FILTER */
+
+    function filterGames(category) {
+
+      const games =
+        document.querySelectorAll(".game");
+
+      games.forEach(function(game) {
+
+        const gameCategory =
+          game.getAttribute("data-category");
+
+        if (gameCategory === category) {
+          game.style.display = "block";
+        } else {
+          game.style.display = "none";
+        }
+
+      });
+
+      document
+        .getElementById("games")
+        .scrollIntoView({
+          behavior: "smooth"
+        });
+
+    }
+
+
+    /* PLAY BUTTON */
+
+    function openGame(event, gameName) {
+
+      event.preventDefault();
+
+      alert(
+        gameName +
+        " will be available here soon!"
+      );
+
+      /*
+        Later we can replace this alert
+        with the real game page.
+      */
+
+    }
+
+
+    /* CPA OFFER */
+
+    function cpaOffer() {
+
+      /*
+        Replace the href="#" above
+        with your real CPA tracking URL.
+
+        Example:
+
+        href="YOUR-CPA-LINK"
+
+      */
+
+      alert(
+        "Add your CPA offer link to this button."
+      );
+
+      return false;
+
+    }
+
+  </script>
+
+</body>
+</html>
